@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+</head>
+<body>
+    <h1>Shopping Cart</h1>
+    <ul>
+        {% for item in cart.items.all %}
+        <li>{{ item.product.product_name }} - Quantity: {{ item.quantity }} - Subtotal: ${{ item.subtotal }}</li>
+        <form action="{% url 'remove_from_cart' item.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Remove from Cart</button>
+        </form>
+        {% endfor %}
+    </ul>
+    <p>Total Price: ${{ cart.total_price }}</p>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Staff dashboard</h1>
+    {{username}} {{id}}
+
+    <div class="container">
+        <p>logout here <a href="/staff_logout/"><button>Logout</button></a></p>
+    </div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Product_name</th>
+            <th>category</th>
+            <th>Material</th>
+            <th>Image</th>
+            <th>Price</th>
+            <th>Delete</th>
+            <th>update</th>
+        </tr>
+        {% for i in cr %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.product_name}}</td>
+            <td>{{i.category}}</td>
+            <td>{{i.material}}</td>
+            <td><img src="{{ i.image.url }}" alt="img" height="100px" width="100px"></td>
+            <td>{{i.price}}</td>
+            <td><a href="{% url 'product_delete' i.id %}">Delete</a></td>
+            <td><a href="{% url 'product_update' i.id %}">update</a></td>
+            
+            
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #555;
+        }
+
+        td {
+            background-color: #fff;
+        }
+
+        img {
+            display: block;
+            margin: auto;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .logout-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Staff Dashboard</h1>
+        {{username}} {{id}}
+
+        <div class="logout-btn">
+            <p>Logout here <a href="/staff_logout/"><button>Logout</button></a></p>
+        </div>
+        <div class="mb-3">
+            <h3>add products</h3>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {%csrf_token%}
+                {{form.as_p}}
+            <button>add</button>
+            </form>
+        </div>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Material</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Delete</th>
+                <th>Update</th>
+            </tr>
+            {% for i in cr %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.product_name}}</td>
+                <td>{{i.category}}</td>
+                <td>{{i.material}}</td>
+                <td><img src="{{ i.image.url }}" alt="img" height="100px" width="100px"></td>
+                <td>{{i.price}}</td>
+                <td><a href="{% url 'product_delete' i.id %}">Delete</a></td>
+                <td><a href="{% url 'product_update' i.id %}">Update</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+
+</html>
